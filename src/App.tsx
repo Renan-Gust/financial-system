@@ -4,8 +4,8 @@ import * as C from './styles/global'
 
 import { TableArea } from './components/TableArea'
 import { InfoArea } from './components/InfoArea'
+import { InputArea } from './components/InputArea'
 
-import { Category } from './types/Category'
 import { Item } from './types/Item'
 
 import { Categories } from './data/categories'
@@ -45,6 +45,12 @@ function App() {
         setCurrentMonth(newMonth)
     }
 
+    function handleAddItem(item: Item) {
+        let newList = [...list]
+        newList.push(item)
+        setList(newList)
+    }
+
     return (
         <C.Container>
             <C.Header>
@@ -58,7 +64,7 @@ function App() {
                     expense={expense}
                 />
 
-                {/* Área de inserção */}
+                <InputArea onAdd={handleAddItem} />
 
                 <TableArea list={filteredList} />
             </C.Body>
